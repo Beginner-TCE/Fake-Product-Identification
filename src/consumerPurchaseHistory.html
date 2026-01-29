@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Consumer | Fake Product Identification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Google Fonts & Font Awesome -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-image: url('con.jpg'); /* Change background image here */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      color: #f0f0f0;
+    }
+
+    /* Headline */
+    .headline {
+      text-align: center;
+      padding: 60px 20px 40px 20px;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .headline h1 {
+      font-size: 35px;
+      font-weight: 700;
+      margin: 0;
+      color: #ebe70c;
+    }
+
+    .headline span {
+      display: block;
+      font-size: 16px;
+      font-weight: 400;
+      color: #cfd8dc;
+      margin-top: 5px;
+    }
+
+    /* Navigation Bar */
+    nav.navbar {
+      display: flex;
+      justify-content: center;
+      background: rgba(0,0,0,0.65);
+      padding: 20px 0;
+      margin-bottom: 40px;
+    }
+
+    nav.navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 60px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav.navbar ul li a {
+      color: #eceff1;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    nav.navbar ul li a:hover {
+      background-color: rgba(79, 193, 233, 0.2);
+      color: #11e94e;
+    }
+
+    /* Main content container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto 50px auto;
+      padding: 20px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 10px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .container h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .container h3 {
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #cfd8dc;
+    }
+
+    /* Form styling */
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-top: 5px;
+    }
+
+    .btn-register {
+      background-color: #ffc107;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn-register:hover {
+      background-color: #e0a800;
+      color: #fff;
+    }
+
+    /* Table Styling */
+    table {
+      width: 100%;
+      margin-top: 20px;
+      background-color: rgba(0,0,0,0.6);
+      border-radius: 5px;
+      border-collapse: collapse;
+      color: #fff;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #fff;
+      text-align: center;
+    }
+
+    /* Footer text */
+    .address {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #f0f0f0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav.navbar ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .container h2 { font-size: 24px; }
+      .container h3 { font-size: 16px; }
+      .form-control { font-size: 14px; }
+      th, td { font-size: 14px; padding: 8px 10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Headline -->
+  <div class="headline">
+    <h1>Fake Product Identification</h1>
+    <span>through Blockchain</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="manufacturer.html">Manufacturer</a></li>
+      <li><a href="seller.html">Seller</a></li>
+      <li><a href="consumer.html">Consumer</a></li>
+    </ul>
+  </nav>
+
+  <!-- Consumer Code Form -->
+  <div class="container">
+    <h2>Consumer Product History</h2>
+    <h3>Enter the consumer code to view purchased products</h3>
+
+    <div class="form-group">
+      <label for="consumerCode">Consumer Code</label>
+      <input type="text" class="form-control" id="consumerCode" placeholder="Enter Consumer Code" name="consumerCode">
+    </div>
+
+    <button type="submit" class="btn btn-register" id="register">Get Products</button>
+
+    <!-- Products Table -->
+    <h2>Products purchased by consumer</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Product SN</th>
+          <th>Seller Code</th>
+          <th>Manufacturer Code</th>
+        </tr>
+      </thead>
+      <tbody id="logdata"></tbody>
+    </table>
+
+    <p class="address">Your address is <b id="add"></b></p>
+  </div>
+
+  <!-- JS Files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/consumerPurchaseHistory.js"></script>
+</body>
+</html>

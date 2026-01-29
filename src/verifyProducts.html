@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Fake Product Identification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Google Fonts & Font Awesome -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-image: url('con.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #fff;
+    }
+
+    /* Header alignment same as old */
+    .headline {
+      text-align: center;
+      padding: 40px 20px 20px 20px;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .headline h1 {
+      font-size: 36px;
+      color: #ebe70c;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .headline span {
+      font-size: 18px;
+      color: #cfd8dc;
+    }
+
+    /* Navigation bar - same style as old */
+    nav.navbar {
+      display: flex;
+      justify-content: center;
+      background: rgba(0,0,0,0.7);
+      padding: 18px 0;
+      margin-bottom: 40px;
+    }
+
+    nav.navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 60px;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav.navbar ul li a {
+      color: #eceff1;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 17px;
+      padding: 6px 12px;
+      border-radius: 5px;
+    }
+
+    nav.navbar ul li a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #22ff55;
+    }
+
+    /* Container styling */
+    .container {
+      max-width: 850px;
+      margin: auto;
+      padding: 25px;
+      background: rgba(0,0,0,0.55);
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: #ffeb3b;
+    }
+
+    .form-group {
+      text-align: left;
+      margin: 20px 0;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      margin-top: 5px;
+
+    }
+
+    .btn-register {
+      background-color: #ffc107;
+      color: #000;
+      padding: 10px 22px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .btn-register:hover {
+      background-color: #e0a800;
+      color: #fff;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(0,0,0,0.5);
+      margin-top: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #fff;
+      text-align: center;
+      color: #fff;
+    }
+
+    #qr-reader {
+      margin: auto;
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    #qr-reader-results {
+      color: #00ff8c;
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="headline">
+    <h1>Fake Product Identification</h1>
+    <span>through Blockchain</span>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="manufacturer.html">Manufacturer</a></li>
+      <li><a href="seller.html">Seller</a></li>
+      <li><a href="consumer.html">Consumer</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <h2>Verify Products</h2>
+
+    <!-- QR Code Scanner -->
+    <center>
+      <div id="qr-reader" style="width:300px;"></div>
+      <div id="qr-reader-results"></div>
+    </center>
+
+    <!-- Form -->
+    <div class="form-group">
+      <label for="productSN">Product SN:</label>
+      <input type="text" class="form-control" id="productSN" placeholder="Enter Product SN" name="productSN">
+
+      <label for="consumerCode">Consumer Code</label>
+      <input type="text" class="form-control" id="consumerCode" placeholder="Enter Consumer Code" name="consumerCode">
+    </div>
+
+    <button type="submit" class="btn btn-register" id="register">Get Product Status</button>
+
+    <h2>Is the product sold to consumer fake or not?</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product Verification Result</th>
+        </tr>
+      </thead>
+      <tbody id="logdata"></tbody>
+    </table>
+
+    <p>Your address is <b id="add"></b></p>
+  </div>
+
+  <!-- SCRIPTS (UNCHANGED AS REQUESTED) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/verifyProduct.js"></script>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <!-- QR SCAN FUNCTION (UNTOUCHED) -->
+  <script>
+    var decodedText = "Enter Product SN";
+    function docReady(fn) {
+      if (document.readyState === "complete" || document.readyState === "interactive") {
+        setTimeout(fn, 1);
+      } else {
+        document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+
+    docReady(function () {
+      var lastResult = null;
+
+      function onScanSuccess(decodedText, decodedResult) {
+        if (decodedText !== lastResult) {
+          lastResult = decodedText;
+          var audio = new Audio('beep.wav');
+          audio.play();
+          document.getElementById('qr-reader-results').innerHTML = decodedText;
+          document.getElementById("productSN").value = decodedText;
+        }
+      }
+
+      var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 250 });
+      html5QrcodeScanner.render(onScanSuccess);
+    });
+  </script>
+
+</body>
+</html>

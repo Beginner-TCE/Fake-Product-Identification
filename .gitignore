@@ -1,0 +1,6 @@
+.history/
+build/
+node_modules/
+src/con.jpg
+FileSaver.min.js
+bs-config.json

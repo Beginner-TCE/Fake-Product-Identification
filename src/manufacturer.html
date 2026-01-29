@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Fake Product Identification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- OLD PAGE STYLING APPLIED TO NEW PAGE -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-image: url('man.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      color: #f0f0f0;
+    }
+
+    /* Headline bar from old page */
+    .headline {
+      text-align: center;
+      padding: 60px 20px 40px 20px;
+      background: rgba(0, 0, 0, 0.4);
+      width: 100%;
+    }
+
+    .headline h1 {
+      font-size: 35px;
+      font-weight: 700;
+      margin: 0;
+      color: #ebe709;
+    }
+
+    .headline span {
+      display: block;
+      font-size: 16px;
+      font-weight: 400;
+      color: #cfd8dc;
+      margin-top: 5px;
+    }
+
+    /* Navbar from old page */
+    nav.navbar {
+      background: rgba(0, 0, 0, 0.65) !important;
+      padding: 15px 0;
+      margin-bottom: 80px;
+    }
+
+    nav.navbar ul li a {
+      color: #eceff1 !important;
+      font-size: 16px;
+      padding: 8px 15px !important;
+      transition: 0.3s;
+    }
+
+    nav.navbar ul li a:hover {
+      background-color: rgba(79, 193, 233, 0.2);
+      color: #28a745 !important;
+      border-radius: 5px;
+    }
+
+    /* Fixed dashboard heading like old page */
+    .dashboard-title {
+      position: fixed;
+      bottom: 450px;
+      left: 3%;
+      font-size: 28px;
+      color: #ffffff;
+      font-weight: 700;
+      text-shadow: 0 0 5px #000;
+    }
+
+    /* Fixed thought text like old page */
+    .thought-text {
+      position: fixed;
+      bottom: 400px;
+      left: 12%;
+      transform: translateX(-50%);
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 400;
+      max-width: 450px;
+      text-shadow: 0 0 4px #27e24644, 0 0 8px #27e24622;
+      transition: 0.3s;
+      text-align: center;
+    }
+
+    .thought-text:hover {
+      color: #28a745;
+      text-shadow: 0 0 6px #28a74544, 0 0 12px #28a74522;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-title {
+        bottom: 200px;
+        left: 5%;
+        font-size: 24px;
+      }
+
+      .thought-text {
+        bottom: 140px;
+        left: 50%;
+        font-size: 16px;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- OLD PAGE HEADLINE SECTION -->
+  <div class="headline">
+    <h1>Fake Product Identification</h1>
+    <span>through Blockchain</span>
+  </div>
+
+  <!-- NAVBAR FROM NEW PROJECT (WITH OLD STYLE APPLIED) -->
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
+    <div class="container-fluid">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+        <span class="fa fa-bars"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav m-auto">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="addProduct.html" class="nav-link">Add Product</a></li>
+          <li class="nav-item"><a href="addSeller.html" class="nav-link">Add Seller</a></li>
+          <li class="nav-item"><a href="sellProductManufacturer.html" class="nav-link">Sell Product To Seller</a></li>
+          <li class="nav-item"><a href="querySeller.html" class="nav-link">Query Seller</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- OLD PAGE FIXED HEADING -->
+  <h2 class="dashboard-title">Manufacturer Dashboard</h2>
+
+  <!-- OLD PAGE FIXED THOUGHT TEXT -->
+  <h3 class="thought-text">
+    Use the navigation bar above<br>
+    to perform operations.
+  </h3>
+
+  <!-- SCRIPTS (UNCHANGED) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+
+</body>
+</html>

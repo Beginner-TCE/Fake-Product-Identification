@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Fake Product Identification</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Existing CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/qr_code_box.css">
+
+  <style>
+    body {
+      background: url("man.jpg") no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    h2 {
+      color: #ffcc00 !important;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .matrix table {
+      background: rgba(0, 0, 0, 0.65);
+      padding: 25px;
+      border-radius: 12px;
+      color: white;
+    }
+
+    label {
+      color: #ffffff !important;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <section class="ftco-section">
+    <div class="container-fluid px-md-5">
+      <div class="row justify-content-between">
+        <div class="col-md-8 order-md-last">
+          <div class="row">
+            <div class="col-md-6 text-center">
+              <a class="navbar-brand" href="index.html">
+                Fake Product Identification
+                <span>through Blockchain</span>
+              </a>
+            </div>
+            <div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
+              <form action="#" class="searchform order-lg-last"></form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVBAR (UNCHANGED) -->
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
+          <span class="fa fa-bars"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav m-auto">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
+            <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
+            <li class="nav-item"><a href="consumer.html" class="nav-link">Consumer</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </section>
+
+  <!-- ADD PRODUCT -->
+  <section>
+    <div class="container">
+      <h2>Add Product</h2>
+
+      <div class="matrix">
+        <table width="100%">
+          <tr>
+            <td width="15%" align="center"><label>Manufacturer ID</label></td>
+            <td width="30%"><input class="form-control" id="manufacturerID"></td>
+
+            <td width="15%" align="center"><label>Product Name</label></td>
+            <td width="30%"><input class="form-control" id="productName"></td>
+          </tr>
+
+          <tr>
+            <td align="center"><label>Product SN</label></td>
+            <td><input class="form-control" id="productSN"></td>
+
+            <td align="center"><label>Product Brand</label></td>
+            <td><input class="form-control" id="productBrand"></td>
+          </tr>
+
+          <tr>
+            <td align="center"><label>Product Price</label></td>
+            <td><input class="form-control" id="productPrice"></td>
+          </tr>
+        </table>
+      </div>
+
+      <br>
+      <div align="center">
+        <button class="btn btn-warning btn-register" onclick="addProduct()">
+          Add the Product
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- QR CODE -->
+  <div class="qr-code">
+    <div align="center">
+      <img hidden id="imgQR">
+    </div>
+    <br>
+    <div align="center">
+      <button hidden class="btn btn-warning" id="download" onclick="saveImage()">
+        Download QR Code
+      </button>
+    </div>
+  </div>
+
+  <!-- JS FILES (UNCHANGED) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+
+  <!-- METAMASK CONNECT (UNCHANGED) -->
+  <script>
+    let web3Provider = null;
+
+    async function initWeb3() {
+      if (window.ethereum) {
+        web3Provider = window.ethereum;
+        try {
+          await window.ethereum.request({ method: "eth_requestAccounts" });
+        } catch (error) {
+          alert("MetaMask access denied");
+        }
+      } else {
+        alert("Please install MetaMask");
+        return;
+      }
+      window.web3 = new Web3(web3Provider);
+    }
+
+    window.addEventListener("load", initWeb3);
+  </script>
+
+  <!-- ADD PRODUCT LOGIC (UPDATED ONLY HERE) -->
+  <script>
+    var qrValue;
+
+    function addProduct() {
+      const manufacturerID = document.getElementById("manufacturerID").value.trim();
+      const productName = document.getElementById("productName").value.trim();
+      const productSN = document.getElementById("productSN").value.trim();
+      const productBrand = document.getElementById("productBrand").value.trim();
+      const productPrice = document.getElementById("productPrice").value.trim();
+
+      if (!manufacturerID || !productName || !productSN || !productBrand || !productPrice) {
+        alert("Please fill all fields!");
+        return;
+      }
+
+      let products = JSON.parse(localStorage.getItem("products")) || [];
+
+      /* 🔒 UNIQUE MANUFACTURER ID */
+      if (products.some(p => p.manufacturerID === manufacturerID)) {
+        alert("Manufacturer ID already registered!");
+        return;
+      }
+
+      /* 🔒 UNIQUE PRODUCT SN */
+      if (products.some(p => p.productSN === productSN)) {
+        alert("Product Serial Number already exists!");
+        return;
+      }
+
+      qrValue = productSN;
+      const qrURL = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrValue}`;
+
+      convertToBase64(qrURL, function (base64QR) {
+
+        products.push({
+          manufacturerID,
+          productName,
+          productSN,
+          productBrand,
+          productPrice,
+          qrCode: base64QR,
+          sellerCode: ""
+        });
+
+        localStorage.setItem("products", JSON.stringify(products));
+
+        document.getElementById("imgQR").src = base64QR;
+        document.getElementById("imgQR").hidden = false;
+        document.getElementById("download").hidden = false;
+
+        document.getElementById("manufacturerID").value = "";
+        document.getElementById("productName").value = "";
+        document.getElementById("productSN").value = "";
+        document.getElementById("productBrand").value = "";
+        document.getElementById("productPrice").value = "";
+      });
+    }
+
+    function convertToBase64(url, callback) {
+      const img = new Image();
+      img.crossOrigin = "Anonymous";
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        canvas.getContext("2d").drawImage(img, 0, 0);
+        callback(canvas.toDataURL("image/png"));
+      };
+      img.src = url;
+    }
+
+    function saveImage() {
+      saveAs(document.getElementById("imgQR").src, qrValue + "_QR.png");
+    }
+  </script>
+
+</body>
+</html>

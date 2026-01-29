@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Fake Product Identification</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      body {
+        background: url('man.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Roboto', sans-serif;
+        color: #fff;
+      }
+      .navbar-nav { margin: 0 auto; text-align: center; }
+      h2 { text-align: center; color: #ffcc00; font-weight: 600; margin-bottom: 25px; }
+      .form-wrapper {
+        background: rgba(0, 0, 0, 0.75);
+        padding: 40px 50px;
+        border-radius: 15px;
+        max-width: 600px;
+        margin: 50px auto;
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+      }
+      label { color: #ffdb4d; font-weight: 500; display: block; margin-bottom: 8px; }
+      .form-control { width: 100%; padding: 10px 12px; border-radius: 8px; border: none; background-color: #f8f9fa; color: #333; }
+      .btn-register {
+        display: block;
+        margin: 20px auto 0;
+        background-color: #ffcc00;
+        color: #000;
+        font-weight: 600;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      .navbar-brand {
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      font-size: 20px;
+      line-height: 1.2;
+      margin-bottom: 30px;
+      display: inline-block;
+      padding-top: 0.3125rem;
+      padding-bottom: 0.3125rem;
+      margin-right: 1rem;
+}
+      .navbar-brand span {
+        color: #ffcc00;
+      }
+      .btn-register:hover { background-color: #ffdb4d; transform: translateY(-2px); }
+      .table-container {
+        background: rgba(0, 0, 0, 0.75);
+        border-radius: 15px;
+        padding: 30px;
+        margin-top: 40px;
+        box-shadow: 0 0 12px rgba(55, 96, 233, 0.25);
+      }
+      table { width: 100%; border-collapse: collapse; text-align: center; color: #bab7c4; }
+      table th, table td { border: 1px solid rgba(231, 221, 221, 0.979); padding: 12px; }
+      table th { background-color: rgba(255, 204, 0, 0.3); color: #ffdb4d; }
+      table tr:nth-child(even) { background-color: rgba(26, 189, 230, 0.05); }
+      p { text-align: center; color: #eee; margin-top: 20px; }
+      #add { color: #ffcc00; }
+      @media (max-width: 768px) {
+        .form-wrapper, .table-container { padding: 25px; }
+        table th, table td { font-size: 14px; }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="ftco-section">
+      <div class="container-fluid px-md-5">
+        <div class="row justify-content-between">
+          <div class="col-md-8 order-md-last">
+            <div class="row">
+              <div class="col-md-6 text-center">
+                <a class="navbar-brand" href="index.html">Fake Product Identification <span>through Blockchain</span></a>
+              </div>
+              <div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
+                <form action="#" class="searchform order-lg-last"></form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="social-media"></div>
+          </div>
+        </div>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span> Menu
+          </button>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav m-auto">
+              <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="manufacturer.html" class="nav-link">Manufacturer</a></li>
+              <li class="nav-item"><a href="seller.html" class="nav-link">Seller</a></li>
+              <li class="nav-item"><a href="consumer.html" class="nav-link">Consumer</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <!-- Query Sellers Form -->
+    <section>
+      <div class="form-wrapper">
+        <h2>Query Sellers</h2>
+        <div class="form-group">
+          <label for="manufacturerCode">Manufacturer Code</label>
+          <input type="text" class="form-control" id="manufacturerCode" placeholder="Enter manufacturer code" name="manufacturerCode">
+        </div>
+        <button type="submit" class="btn btn-register" id="register">Get Sellers</button>
+      </div>
+    </section>
+
+    <!-- Sellers Table -->
+    <section>
+      <div class="container table-container">
+        <h2>Sellers</h2>
+        <p>Following are the sellers registered through Blockchain Network</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Brand</th>
+              <th>Code</th>
+              <th>Number</th>
+              <th>Manager</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody id="logdata"></tbody>
+        </table>
+        <p>Your address is <b id="add"></b></p>
+      </div>
+    </section>
+
+    <!-- JS Links -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/sellerDataApp.js"></script>
+  </body>
+</html>
